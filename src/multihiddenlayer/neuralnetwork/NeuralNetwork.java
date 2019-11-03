@@ -73,28 +73,14 @@ public class NeuralNetwork {            //1 hidden layer
         return this;
     }
 
-    /*
-    Update Weight
-    -------------
-    W = W + learning_rate*(Jw)'
-    */
-
-
-    /*
-    * E2 = d(J/Z2) = (J)X1'
-    * d(J/W2) = A1*E2
-    * d(J/b2) = E2
-    * E1 = (W2*E2)*f'(Z1)
-    * d(J/W1) = A0*E1
-    * d(J/b1) = E1
-    * */
 
     public NeuralNetwork backPropagation(double targetRs){
         Neuron[] inputLayer = layers[0].getNeurons();
         Neuron[] hiddenLayer = layers[1].getNeurons();
         Neuron outputLayer = layers[2].getNeurons()[0];
-        //update weight for output layer
-        outputLayer.setError((targetRs - outputLayer.getOutput())*outputLayer.derivativeOutput());//Đạo hàm Cost theo Z
+        //update weight for output layer    dJ/dw = dJ/dout * dout/dnet * dnet/dw
+        //dJ/d
+        outputLayer.setError((targetRs - outputLayer.getOutput())*outputLayer.derivativeOutput()); //dJ/dout * dout/dnet
         for (int i = 0; i < outputLayer.getWeights().length; i++) {
             outputLayer.getWeights()[i] =
                     outputLayer.getWeights()[i] + LEARNING_RATE*outputLayer.getError()*hiddenLayer[i].getOutput();

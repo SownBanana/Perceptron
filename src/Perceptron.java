@@ -55,7 +55,6 @@ public class Perceptron {
         }
         sum +=  w[0];
         return (sum >= theta)?1:0;
-//        return sum;
     }
     public static double randomDouble(int min, int max){
         DecimalFormat decimalFormat = new DecimalFormat("#.####");
